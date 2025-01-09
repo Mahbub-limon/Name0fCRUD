@@ -31,6 +31,17 @@ namespace Name0fCRUD.Controllers
             return View(vm);
         }
 
+        // GET: Items/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
         //get :Items / cteate
         public IActionResult Create()
         {
