@@ -1,4 +1,4 @@
-using System.Diagnostics;
+        using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Name0fCRUD.Models;
@@ -25,22 +25,13 @@ namespace Name0fCRUD.Controllers
         //}
 
         //GET:ITEMS
-        public async Task<IActionResult> Index() //list
+        public async Task<IActionResult> Index() 
         {
             var vm = await _context.Items.ToListAsync();
             return View(vm);
         }
 
-        // GET: Items/Details/5
-        public async Task<IActionResult> Details(int id)
-        {
-            var item = await _context.Items.FindAsync(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-            return View(item);
-        }
+      
 
         //get :Items / cteate
         public IActionResult Create()
@@ -75,9 +66,9 @@ namespace Name0fCRUD.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Item item)  //edit
+        public async Task<IActionResult> Edit(int id, Item item)  
         { 
-         if(id != item.Id || !ModelState.IsValid)
+            if(id != item.Id || !ModelState.IsValid)
             {
                 return NotFound();
             }
@@ -98,6 +89,20 @@ namespace Name0fCRUD.Controllers
          return RedirectToAction(nameof(Index));
         }
 
+        // GET: Items/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+
+
+
         //GET : Items/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -111,7 +116,7 @@ namespace Name0fCRUD.Controllers
         }
 
 
-        [HttpPost,ActionName("Delete")]  //de
+        [HttpPost,ActionName("Delete")]  
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed (int id)
         {
